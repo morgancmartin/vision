@@ -45,6 +45,8 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic_blank_project_mobile_first.module.css"; // plasmic-import: iTJnNP8tTWeqztkYCLWG3v/projectcss
 import sty from "./PlasmicDiscoverTile.module.css"; // plasmic-import: 0sKOrKoeNa/css
 
+createPlasmicElementProxy;
+
 export type PlasmicDiscoverTile__VariantMembers = {};
 export type PlasmicDiscoverTile__VariantsArgs = {};
 type VariantPropType = keyof PlasmicDiscoverTile__VariantsArgs;

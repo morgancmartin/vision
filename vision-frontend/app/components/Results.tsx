@@ -38,6 +38,8 @@ function Results_(props: ResultsProps, ref: HTMLElementRefOf<"div">) {
   // By default, we are just piping all ResultsProps here, but feel free
   // to do whatever works for you.
 
+  /* const onClose = () => console.log("CLICKED ON CLOSE"); */
+
   return <PlasmicResults root={{ ref }} {...props} />;
 }
 

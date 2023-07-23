@@ -53,6 +53,8 @@ import wonder1687627058566JpgAMTkDxl8T from "./images/wonder1687627058566Jpg.jpg
 import wonder1687627141293Jpg2PiMtfLuV from "./images/wonder1687627141293Jpg.jpg"; // plasmic-import: 2PiMTFLuV/picture
 import wonder1687627230129JpgKAcEPosv4 from "./images/wonder1687627230129Jpg.jpg"; // plasmic-import: KAcEPosv4/picture
 
+createPlasmicElementProxy;
+
 export type PlasmicStyleCarousel__VariantMembers = {};
 export type PlasmicStyleCarousel__VariantsArgs = {};
 type VariantPropType = keyof PlasmicStyleCarousel__VariantsArgs;
@@ -60,10 +62,12 @@ export const PlasmicStyleCarousel__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicStyleCarousel__ArgsType = {
   children?: React.ReactNode;
+  selected?: number;
 };
 type ArgPropType = keyof PlasmicStyleCarousel__ArgsType;
 export const PlasmicStyleCarousel__ArgProps = new Array<ArgPropType>(
-  "children"
+  "children",
+  "selected"
 );
 
 export type PlasmicStyleCarousel__OverridesType = {
@@ -72,6 +76,7 @@ export type PlasmicStyleCarousel__OverridesType = {
 
 export interface DefaultStyleCarouselProps {
   children?: React.ReactNode;
+  selected?: number;
   className?: string;
 }
 

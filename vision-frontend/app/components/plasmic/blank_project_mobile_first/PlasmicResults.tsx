@@ -46,14 +46,24 @@ import CheckIcon from "./icons/PlasmicIcon__Check"; // plasmic-import: _BAnEXFX-
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: 31UAxQ8ZIvu/icon
 import wonder1687803881391JpgGl36XgdY from "./images/wonder1687803881391Jpg.jpg"; // plasmic-import: gl36Xgd-Y/picture
 
+createPlasmicElementProxy;
+
 export type PlasmicResults__VariantMembers = {};
 export type PlasmicResults__VariantsArgs = {};
 type VariantPropType = keyof PlasmicResults__VariantsArgs;
 export const PlasmicResults__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicResults__ArgsType = {};
+export type PlasmicResults__ArgsType = {
+  children?: React.ReactNode;
+  onClose?: (event: any) => void;
+  onDownload?: (event: any) => void;
+};
 type ArgPropType = keyof PlasmicResults__ArgsType;
-export const PlasmicResults__ArgProps = new Array<ArgPropType>();
+export const PlasmicResults__ArgProps = new Array<ArgPropType>(
+  "children",
+  "onClose",
+  "onDownload"
+);
 
 export type PlasmicResults__OverridesType = {
   root?: p.Flex<"div">;
@@ -61,6 +71,9 @@ export type PlasmicResults__OverridesType = {
 };
 
 export interface DefaultResultsProps {
+  children?: React.ReactNode;
+  onClose?: (event: any) => void;
+  onDownload?: (event: any) => void;
   className?: string;
 }
 
@@ -120,6 +133,7 @@ function PlasmicResults__RenderFunc(props: {
                 >
                   <XCircleIcon
                     className={classNames(projectcss.all, sty.svg__pOhnp)}
+                    onClick={args.onClose}
                     role={"img"}
                   />
                 </section>
@@ -132,6 +146,7 @@ function PlasmicResults__RenderFunc(props: {
                 >
                   <UnionIcon
                     className={classNames(projectcss.all, sty.svg__dIy6L)}
+                    onClick={args.onDownload}
                     role={"img"}
                   />
                 </section>
@@ -142,62 +157,72 @@ function PlasmicResults__RenderFunc(props: {
               hasGap={true}
               className={classNames(projectcss.all, sty.section__i26QG)}
             >
-              <section
-                className={classNames(projectcss.all, sty.section__anjqp)}
-              >
-                <ResultTile
-                  className={classNames(
-                    "__wab_instance",
-                    sty.resultTile__mhbpP
-                  )}
-                >
-                  <p.PlasmicImg
-                    alt={""}
-                    className={classNames(sty.img__ul4Fr)}
-                    displayHeight={"94%" as const}
-                    displayMaxHeight={"none" as const}
-                    displayMaxWidth={"100%" as const}
-                    displayMinHeight={"100%" as const}
-                    displayMinWidth={"100%" as const}
-                    displayWidth={"635px" as const}
-                    loading={"lazy" as const}
-                    src={{
-                      src: wonder1687803881391JpgGl36XgdY,
-                      fullWidth: 3072,
-                      fullHeight: 2048,
-                      aspectRatio: undefined,
-                    }}
-                  />
-                </ResultTile>
-              </section>
-              <section
-                className={classNames(projectcss.all, sty.section__fcXu)}
-              >
-                <ResultTile
-                  className={classNames(
-                    "__wab_instance",
-                    sty.resultTile___3Vli
-                  )}
-                >
-                  <p.PlasmicImg
-                    alt={""}
-                    className={classNames(sty.img__nowta)}
-                    displayHeight={"94%" as const}
-                    displayMaxHeight={"none" as const}
-                    displayMaxWidth={"100%" as const}
-                    displayMinHeight={"100%" as const}
-                    displayMinWidth={"100%" as const}
-                    displayWidth={"635px" as const}
-                    loading={"lazy" as const}
-                    src={{
-                      src: wonder1687803881391JpgGl36XgdY,
-                      fullWidth: 3072,
-                      fullHeight: 2048,
-                      aspectRatio: undefined,
-                    }}
-                  />
-                </ResultTile>
-              </section>
+              {p.renderPlasmicSlot({
+                defaultContents: (
+                  <React.Fragment>
+                    <section
+                      className={classNames(projectcss.all, sty.section__dBhaC)}
+                    >
+                      <ResultTile
+                        className={classNames(
+                          "__wab_instance",
+                          sty.resultTile__xuHq1
+                        )}
+                      >
+                        <p.PlasmicImg
+                          alt={""}
+                          className={classNames(sty.img__icGhx)}
+                          displayHeight={"94%" as const}
+                          displayMaxHeight={"none" as const}
+                          displayMaxWidth={"100%" as const}
+                          displayMinHeight={"100%" as const}
+                          displayMinWidth={"100%" as const}
+                          displayWidth={"635px" as const}
+                          loading={"lazy" as const}
+                          src={{
+                            src: wonder1687803881391JpgGl36XgdY,
+                            fullWidth: 3072,
+                            fullHeight: 2048,
+                            aspectRatio: undefined,
+                          }}
+                        />
+                      </ResultTile>
+                    </section>
+                    <section
+                      className={classNames(
+                        projectcss.all,
+                        sty.section___7KatS
+                      )}
+                    >
+                      <ResultTile
+                        className={classNames(
+                          "__wab_instance",
+                          sty.resultTile__ywaAx
+                        )}
+                      >
+                        <p.PlasmicImg
+                          alt={""}
+                          className={classNames(sty.img__afEli)}
+                          displayHeight={"94%" as const}
+                          displayMaxHeight={"none" as const}
+                          displayMaxWidth={"100%" as const}
+                          displayMinHeight={"100%" as const}
+                          displayMinWidth={"100%" as const}
+                          displayWidth={"635px" as const}
+                          loading={"lazy" as const}
+                          src={{
+                            src: wonder1687803881391JpgGl36XgdY,
+                            fullWidth: 3072,
+                            fullHeight: 2048,
+                            aspectRatio: undefined,
+                          }}
+                        />
+                      </ResultTile>
+                    </section>
+                  </React.Fragment>
+                ),
+                value: args.children,
+              })}
             </p.Stack>
             <section
               className={classNames(projectcss.all, sty.section__jLeC0)}

@@ -62,6 +62,8 @@ import wonder1687803881391JpgGl36XgdY from "./images/wonder1687803881391Jpg.jpg"
 import wonder1687803889615JpgPg6IigmVm from "./images/wonder1687803889615Jpg.jpg"; // plasmic-import: Pg6IigmVm/picture
 import wonder1687803903721JpgDdfctTQeb from "./images/wonder1687803903721Jpg.jpg"; // plasmic-import: ddfctTQeb/picture
 
+createPlasmicElementProxy;
+
 export type PlasmicHomepage__VariantMembers = {};
 export type PlasmicHomepage__VariantsArgs = {};
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;

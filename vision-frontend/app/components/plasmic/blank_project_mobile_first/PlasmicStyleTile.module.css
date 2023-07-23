@@ -14,6 +14,22 @@
   box-shadow: none;
   border-radius: 8px;
 }
+.freeBox {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.freeBoxselected {
+  border-radius: 5px;
+  border: 1px solid #13cfa3;
+}
 .img__wy0YJ {
   position: relative;
   object-fit: cover;
@@ -27,4 +43,13 @@
 }
 .img__wy0YJ > :global(.__wab_img-spacer) > img {
   object-fit: cover;
+}
+.text {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 18px;
+  font-size: 12px;
+  min-width: 0;
 }

@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 
 import { createGenImage } from "~/models/genimage.server";
 import { requireUserId } from "~/session.server";
-import Homepage, {} from '~/components/Homepage'
+import Homepage from "~/components/Homepage";
 
 export const action = async ({ request }: ActionArgs) => {
   const userId = await requireUserId(request);
@@ -26,9 +26,9 @@ export const action = async ({ request }: ActionArgs) => {
 };
 
 export default function Index() {
-  const actionData = useActionData<typeof action>()
-  const promptRef = useRef<HTMLTextAreaElement>(null)
-  const submitRef = useRef<HTMLButtonElement>(null)
+  const actionData = useActionData<typeof action>();
+  const promptRef = useRef<HTMLTextAreaElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (actionData?.errors?.prompt) {
@@ -36,19 +36,21 @@ export default function Index() {
     }
   }, [actionData]);
 
-  const onSubmit = () => submitRef.current?.click()
+  const onSubmit = () => submitRef.current?.click();
 
   return (
-    <Homepage className='overflow-hidden' onSubmit={onSubmit}>
-      <div className='h-24 w-full'>
-        <Form method="post" className='w-full h-full'>
+    <Homepage className="overflow-hidden" onSubmit={onSubmit}>
+      <div className="h-24 w-full">
+        <Form method="post" className="w-full h-full">
           <textarea
             ref={promptRef}
             name="prompt"
             rows={4}
             className="w-full flex-1 rounded-md text-lg leading-6 outline-0 border px-4 py-1"
             aria-invalid={actionData?.errors?.prompt ? true : undefined}
-            aria-errormessage={actionData?.errors?.prompt ? "prompt-error" : undefined}
+            aria-errormessage={
+              actionData?.errors?.prompt ? "prompt-error" : undefined
+            }
           />
           {actionData?.errors?.prompt ? (
             <div className="text-red-700" id="prompt-error">
@@ -56,11 +58,7 @@ export default function Index() {
             </div>
           ) : null}
 
-          <button
-            ref={submitRef}
-            type="submit"
-            className="hidden"
-          />
+          <button ref={submitRef} type="submit" className="hidden" />
         </Form>
       </div>
     </Homepage>

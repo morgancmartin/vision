@@ -45,10 +45,18 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic_blank_project_mobile_first.module.css"; // plasmic-import: iTJnNP8tTWeqztkYCLWG3v/projectcss
 import sty from "./PlasmicStyleTile.module.css"; // plasmic-import: BHBxKjySiY/css
 
-export type PlasmicStyleTile__VariantMembers = {};
-export type PlasmicStyleTile__VariantsArgs = {};
+createPlasmicElementProxy;
+
+export type PlasmicStyleTile__VariantMembers = {
+  selected: "selected";
+};
+export type PlasmicStyleTile__VariantsArgs = {
+  selected?: SingleBooleanChoiceArg<"selected">;
+};
 type VariantPropType = keyof PlasmicStyleTile__VariantsArgs;
-export const PlasmicStyleTile__VariantProps = new Array<VariantPropType>();
+export const PlasmicStyleTile__VariantProps = new Array<VariantPropType>(
+  "selected"
+);
 
 export type PlasmicStyleTile__ArgsType = {
   children?: React.ReactNode;
@@ -57,6 +65,8 @@ export type PlasmicStyleTile__ArgsType = {
   index?: number;
   onIndexChange?: (val: number) => void;
   imageSrc?: string;
+  onClick?: () => void;
+  labelText?: string;
 };
 type ArgPropType = keyof PlasmicStyleTile__ArgsType;
 export const PlasmicStyleTile__ArgProps = new Array<ArgPropType>(
@@ -65,11 +75,15 @@ export const PlasmicStyleTile__ArgProps = new Array<ArgPropType>(
   "onIsSelectedChange",
   "index",
   "onIndexChange",
-  "imageSrc"
+  "imageSrc",
+  "onClick",
+  "labelText"
 );
 
 export type PlasmicStyleTile__OverridesType = {
   root?: p.Flex<"div">;
+  freeBox?: p.Flex<"div">;
+  text?: p.Flex<"div">;
 };
 
 export interface DefaultStyleTileProps {
@@ -79,6 +93,9 @@ export interface DefaultStyleTileProps {
   index?: number;
   onIndexChange?: (val: number) => void;
   imageSrc?: string;
+  onClick?: () => void;
+  labelText?: string;
+  selected?: SingleBooleanChoiceArg<"selected">;
   className?: string;
 }
 
@@ -129,10 +146,21 @@ function PlasmicStyleTile__RenderFunc(props: {
         valueProp: "index",
         onChangeProp: "onIndexChange",
       },
+      {
+        path: "selected",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.selected,
+      },
     ],
-    [$props, $ctx]
+    [$props, $ctx, $refs]
   );
-  const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
+  const $state = p.useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries,
+    $refs,
+  });
 
   return (
     <div
@@ -146,51 +174,137 @@ function PlasmicStyleTile__RenderFunc(props: {
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         projectcss.plasmic_tokens,
-        sty.root
+        sty.root,
+        { [sty.rootselected]: hasVariant($state, "selected", "selected") }
       )}
+      onClick={async (event) => {
+        const $steps = {};
+        $steps["runCode"] = true
+          ? (() => {
+              const actionArgs = {
+                customFunction: __wrapUserFunction(
+                  {
+                    type: "InteractionArgLoc",
+                    actionName: "customFunction",
+                    interactionUuid: "QCHQSoGtQ",
+                    componentUuid: "BHBxKjySiY",
+                    argName: "customFunction",
+                  },
+                  () => () => {
+                    return $props.onClick();
+                  }
+                ),
+              };
+              return __wrapUserFunction(
+                {
+                  type: "InteractionLoc",
+                  actionName: "customFunction",
+                  interactionUuid: "QCHQSoGtQ",
+                  componentUuid: "BHBxKjySiY",
+                },
+                () =>
+                  (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]),
+                actionArgs
+              );
+            })()
+          : undefined;
+        if (
+          typeof $steps["runCode"] === "object" &&
+          typeof $steps["runCode"].then === "function"
+        ) {
+          $steps["runCode"] = await __wrapUserPromise(
+            {
+              type: "InteractionLoc",
+              actionName: "customFunction",
+              interactionUuid: "QCHQSoGtQ",
+              componentUuid: "BHBxKjySiY",
+            },
+            $steps["runCode"]
+          );
+        }
+      }}
     >
-      {p.renderPlasmicSlot({
-        defaultContents: (
-          <p.PlasmicImg
-            alt={""}
-            className={classNames(sty.img__wy0YJ)}
-            displayHeight={"auto" as const}
-            displayMaxHeight={"none" as const}
-            displayMaxWidth={"100%" as const}
-            displayMinHeight={"100%" as const}
-            displayMinWidth={"100%" as const}
-            displayWidth={"auto" as const}
-            loading={"lazy" as const}
-            src={(() => {
-              try {
-                return $props.imageSrc;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "https://site-assets.plasmic.app/f9c235b0068e4d3da3b19ee606a4b288.jpg";
-                }
-                throw e;
-              }
-            })()}
-          />
-        ),
+      {true ? (
+        <div
+          data-plasmic-name={"freeBox"}
+          data-plasmic-override={overrides.freeBox}
+          className={classNames(projectcss.all, sty.freeBox, {
+            [sty.freeBoxselected]: hasVariant($state, "selected", "selected"),
+          })}
+        >
+          {p.renderPlasmicSlot({
+            defaultContents: (
+              <p.PlasmicImg
+                alt={""}
+                className={classNames(sty.img__wy0YJ)}
+                displayHeight={"auto" as const}
+                displayMaxHeight={"none" as const}
+                displayMaxWidth={"100%" as const}
+                displayMinHeight={"100%" as const}
+                displayMinWidth={"100%" as const}
+                displayWidth={"auto" as const}
+                loading={"lazy" as const}
+                src={(() => {
+                  try {
+                    return $props.imageSrc;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "https://site-assets.plasmic.app/f9c235b0068e4d3da3b19ee606a4b288.jpg";
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+            ),
 
-        value: args.children,
-      })}
+            value: args.children,
+          })}
+        </div>
+      ) : null}
+      <div
+        data-plasmic-name={"text"}
+        data-plasmic-override={overrides.text}
+        className={classNames(projectcss.all, projectcss.__wab_text, sty.text, {
+          [sty.textselected]: hasVariant($state, "selected", "selected"),
+        })}
+      >
+        <React.Fragment>
+          {(() => {
+            try {
+              return $props.labelText;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return "";
+              }
+              throw e;
+            }
+          })()}
+        </React.Fragment>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root"],
+  root: ["root", "freeBox", "text"],
+  freeBox: ["freeBox"],
+  text: ["text"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  freeBox: "div";
+  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -253,6 +367,8 @@ export const PlasmicStyleTile = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    freeBox: makeNodeComponent("freeBox"),
+    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicStyleTile
     internalVariantProps: PlasmicStyleTile__VariantProps,

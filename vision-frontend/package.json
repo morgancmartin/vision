@@ -26,7 +26,7 @@
     "/public/build"
   ],
   "dependencies": {
-    "@plasmicapp/react-web": "^0.2.234",
+    "@plasmicapp/react-web": "^0.2.241",
     "@prisma/client": "^4.16.0",
     "@remix-run/css-bundle": "^1.17.0",
     "@remix-run/node": "^1.17.0",

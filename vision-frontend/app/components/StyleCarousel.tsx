@@ -6,8 +6,8 @@ import {
   DefaultStyleCarouselProps,
 } from "./plasmic/blank_project_mobile_first/PlasmicStyleCarousel";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
-import StyleTile from './StyleTile'
-import { atom, useAtom } from 'jotai'
+import StyleTile from "./StyleTile";
+import { atom, useAtom } from "jotai";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -24,24 +24,30 @@ import { atom, useAtom } from 'jotai'
 // total control over the props for your component.
 export interface StyleCarouselProps extends DefaultStyleCarouselProps {}
 
-type StyleTiles = 'styleTile' | 'styleTile2' | 'styleTile3' | 'styleTile4' | 'styleTile5' | 'styleTile6'
-
-export const selectedAtom = atom<StyleTiles | undefined>(undefined)
+/* type StyleTiles =
+ *   | "styleTile"
+ *   | "styleTile2"
+ *   | "styleTile3"
+ *   | "styleTile4"
+ *   | "styleTile5"
+ *   | "styleTile6";
+ *  */
+export const selectedAtom = atom<string | undefined>(undefined);
 
 function StyleCarousel_(
   props: StyleCarouselProps,
   ref: HTMLElementRefOf<"section">
 ) {
   const tileImages = [
-    'style-tiles/wonder_1687626807880.jpg',
-    'style-tiles/wonder_1687626954198.jpg',
-    'style-tiles/wonder_1687627009719.jpg',
-    'style-tiles/wonder_1687627058566.jpg',
-    'style-tiles/wonder_1687627141293.jpg',
-    'style-tiles/wonder_1687627230129.jpg',
-  ]
+    "style-tiles/wonder_1687626807880.jpg",
+    "style-tiles/wonder_1687626954198.jpg",
+    "style-tiles/wonder_1687627009719.jpg",
+    "style-tiles/wonder_1687627058566.jpg",
+    "style-tiles/wonder_1687627141293.jpg",
+    "style-tiles/wonder_1687627230129.jpg",
+  ];
 
-  const [selected, setSelected] = useAtom(selectedAtom)
+  const [selected, setSelected] = useAtom(selectedAtom);
   // Use PlasmicStyleCarousel to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
@@ -57,10 +63,30 @@ function StyleCarousel_(
   // By default, we are just piping all StyleCarouselProps here, but feel free
   // to do whatever works for you.
 
+  const labels = [
+    "Magic",
+    "Novelistic",
+    "Pen&Ink",
+    "Mythological",
+    "Mystical",
+    "Oil Painting",
+  ];
+
+  const getOnClick = (idx: number) => () => {
+    console.log(`INDEX ${idx} CLICKED`);
+    setSelected(labels[idx]);
+  };
+
   return (
     <PlasmicStyleCarousel root={{ ref }} {...props}>
       {tileImages.map((tileImage: string, idx: number) => (
-        <StyleTile index={idx} imageSrc={tileImage} />
+        <StyleTile
+          index={idx}
+          imageSrc={tileImage}
+          onClick={getOnClick(idx)}
+          selected={selected === labels[idx]}
+          labelText={labels[idx]}
+        />
       ))}
     </PlasmicStyleCarousel>
   );
