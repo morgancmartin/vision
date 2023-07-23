@@ -6,14 +6,14 @@ import {
   useLoaderData,
   useRouteError,
 } from "@remix-run/react";
-import invariant from "tiny-invariant";
+/* import invariant from "tiny-invariant"; */
 
 import { deleteNote, getNote } from "~/models/note.server";
 import { requireUserId } from "~/session.server";
 
 export const loader = async ({ params, request }: LoaderArgs) => {
   const userId = await requireUserId(request);
-  invariant(params.noteId, "noteId not found");
+  /* invariant(params.noteId, "noteId not found"); */
 
   const note = await getNote({ id: params.noteId, userId });
   if (!note) {
@@ -24,7 +24,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
 
 export const action = async ({ params, request }: ActionArgs) => {
   const userId = await requireUserId(request);
-  invariant(params.noteId, "noteId not found");
+  /* invariant(params.noteId, "noteId not found"); */
 
   await deleteNote({ id: params.noteId, userId });
 
