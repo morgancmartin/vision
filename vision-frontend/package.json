@@ -2,6 +2,7 @@
   "name": "indie-stack-template",
   "private": true,
   "sideEffects": false,
+  "type": "module",
   "scripts": {
     "build": "remix build",
     "dev": "cross-env NODE_ENV=development binode --require ./mocks -- @remix-run/dev:remix dev",
