@@ -5,14 +5,19 @@
  */
 
 import { RemixBrowser } from "@remix-run/react";
-import { startTransition, StrictMode } from "react";
+import { startTransition, StrictMode, Suspense } from "react";
 import { hydrateRoot } from "react-dom/client";
+import { PlasmicRootProvider } from "@plasmicapp/react-web";
 
 startTransition(() => {
   hydrateRoot(
     document,
     <StrictMode>
-      <RemixBrowser />
+      <Suspense>
+        <PlasmicRootProvider>
+          <RemixBrowser />
+        </PlasmicRootProvider>
+      </Suspense>
     </StrictMode>
   );
 });
