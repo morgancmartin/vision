@@ -12,8 +12,8 @@ FROM base as deps
 
 WORKDIR /myapp
 
-ADD package.json .yarnrc ./
-RUN yarn
+ADD package.json .npmrc ./
+RUN npm install --include=dev
 
 # Setup production node_modules
 FROM base as production-deps
@@ -21,8 +21,8 @@ FROM base as production-deps
 WORKDIR /myapp
 
 COPY --from=deps /myapp/node_modules /myapp/node_modules
-ADD package.json .yarnrc ./
-# RUN npm prune --omit=dev
+ADD package.json .npmrc ./
+RUN npm prune --omit=dev
 
 # Build the app
 FROM base as build
@@ -35,7 +35,7 @@ ADD prisma .
 RUN npx prisma generate
 
 ADD . .
-RUN yarn build
+RUN npm run build
 
 # Finally, build the production image with minimal footprint
 FROM base
