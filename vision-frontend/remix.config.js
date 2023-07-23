@@ -1,5 +1,6 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
+  server: "./server.js",
   cacheDirectory: "./node_modules/.cache/remix",
   future: {
     v2_errorBoundary: true,
